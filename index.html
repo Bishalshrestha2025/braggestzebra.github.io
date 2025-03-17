@@ -278,9 +278,11 @@
 
         
 	// Fetch GitHub repositories dynamically with languages
-	async function fetchGitHubRepos() {
+	document.addEventListener('DOMContentLoaded', async function fetchGitHubRepos() {
     try {
         const response = await fetch('https://api.github.com/users/Bishalshrestha2025/repos');
+        if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+        
         const repos = await response.json();
         const projectList = document.getElementById('project-list');
 
@@ -309,7 +311,8 @@
     } catch (error) {
         console.error('Error fetching GitHub repositories:', error);
     }
-}
+});
+
 fetchGitHubRepos();
 
        
